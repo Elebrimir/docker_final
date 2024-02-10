@@ -1,23 +1,11 @@
 // Conectarse a la base de datos admin
-var db = connect('mongodb://root:example@localhost/admin');
+var db = connect('mongodb://127.0.0.1');
+
+// Asignar roles de restore y backup al usuario root en la base de datos movies
+db.grantRolesToUser('root', ['restore'], { db: 'movies' });
+db.grantRolesToUser('root', ['backup'], { db: 'movies' });
+
 // Ejecutar el comando mongorestore para restaurar los datos
-var result = run('mongorestore', '--username=root', '--password=example', '--authenticationDatabase=admin', '--db=movies', '/docker-entrypoint-initdb.d/movies');
-
-// Verificar el resultado
-if (result !== 0) {
-  print('Error al restaurar los datos');
-  quit(1);
-} else {
-  print('Datos restaurados con éxito');
-}
-
-db.createUser({
-  user: 'root',
-  pwd: 'example',
-  roles: [
-    {
-      role: 'readWrite',
-      db: 'movies'
-    }
-  ]
-})
+var restoreCommand =
+  'mongorestore --username root --password example -d movies /docker-entrypoint-initdb.d/movies'
+var restoreResult = system(restoreCommand)

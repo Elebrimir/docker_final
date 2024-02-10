@@ -61,3 +61,5 @@
 - Añadimos toda la información necesaria al servicio mongodb, que en este caso serian las variables del usuario y contraseña, la base de datos y el volumen junto con la ejecución del archivo Javascript.
 
 ![MongoDB](./public/img/Captura%20desde%202024-02-10%2018-30-21.png)
+
+- _Antes de seguir avanzando es muy recomendable ejecutar el servicio y comprobar que todo funciona correctamente_
