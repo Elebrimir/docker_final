@@ -1,16 +1,32 @@
-version: '3'
+version: '3.7'
 
 services:
   mongo:
     image: mongo
     container_name: mongo_container
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - 27018:27017
     volumes:
-      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - ./mongo/movies:/docker-entrypoint-initdb.d/movies:ro
+    networks:
+      - practica_network
+
+  backend:
+    build: .
+    container_name: backend_container
+    depends_on:
+      - mongo
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/app
+    working_dir: /app
+    command: ['node', 'index.js']
+    networks:
+      - practica_network
+
+networks:
+  practica_network:
+    driver: bridge
 # Para iniciar: docker-compose up --build -d mongo

@@ -1,0 +1,27 @@
+{% extends "../base.njk" %}
+
+{% block titol %}Pel·lícules | Llistat{% endblock %}
+
+{% block contingut %}
+
+ <h1 style="height: 120px" class="text-md-center">Llistat de pel·lícules</h1>
+
+        <a class="display-6 text-dark" style="width: 50%;" > Títol - </a>
+        <a class="display-6 text-dark" style="width: 50%;" > Any - </a>
+        <a class="display-6 text-dark" style="width: 10%;" href="/movies?rate=descent"> Puntuació Descendent</a>
+        <a class="display-6 text-dark" style="width: 10%;" href="/movies?rate=ascent"> Puntuació Ascendent</a>
+
+    <div class="list-group">
+        {% for movie in movies %}
+            <li class="d-flex justify-content-between align-items-center">
+                 <a class="list-group-item list-group-item-action" style="width: 50%;" href="/movies/{{ movie._id }}"> {{ movie.title }} </a>
+                 <a class="list-group-item list-group-item-action" style="width: 15%;" href="/movies/update/{{ movie._id }}"> Actualitzar Pel·lícula</a>
+                 <a class="list-group-item list-group-item-action" style="width: 10%;text-align:center">{{ movie.rate}}</a>
+                 <form action="/movies/delete/{{movie._id}}" method="post">
+                 <button class="btn btn-danger">Esborrar</button>
+                 </form>
+            </li>
+        {% endfor %}
+    </div>
+
+{% endblock %}

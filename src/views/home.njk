@@ -1,0 +1,72 @@
+{%extends 'base.njk'%} {%block titol%}Pel·lícules | Home {%endblock%} {%block
+contingut%}
+<div class="home">
+  <h2>Pablo Cortés Bravo - 2n DAW Semipresencial</h2>
+  <h3>Exercici MVC-5 - Completar la implementació</h3>
+  <p>
+    Caldrà donar forma a l'aplicació pel·lícules com s'ha anat explicant en
+    aquest tema. De forma que dispose d'API i una versió navegable (amb vistes).
+  </p>
+  <p>Caldrà tenir implementat: - API Rest (CRUD sobre movies).</p>
+  <ul>
+    <li>Pàgina de benvinguda</li>
+    <li>Llistat de pel·lícules</li>
+    <li>Informació d'una pel·lícula concreta (a partir del llistat).</li>
+    <li>Botó d'esborrat de pel·lícula.</li>
+    <li>Formulari d'afegir pel·lícula (amb validacions).</li>
+    <li>Formulari de modificació de pel·lícula.</li>
+    <li>
+      Vista d'error (on ens redirigirà si en algun moment hi ha problemes en
+      l'aplicació).
+    </li>
+  </ul>
+  <p>
+    En els exemples del tema actual, s'han implementat parts o mostres de
+    solució.
+  </p>
+  <hr />
+  <h3>Activitat - Movies MVC + Tokens</h3>
+  <p>
+    Completa l'aplicació per tindre suport d'auteticació amb tokens i protegir
+    totes les rutes que impliquen modificacions de dades. Les de visualització
+    poden quedar disponibles sense autenticació.
+  </p>
+  <ul>
+    <li>
+      Incorpora .env i .env.example en el teu projecte per que continga la
+      informació de MONGODB_URI (URL de connexió a la BD), HOST (màquina on
+      arrancarà el servidor) PORT (port del servidor) i SECRET_KEY (clau per a
+      signar en JWT)
+    </li>
+    <li>
+      Possibles ampliacions (són opcionals, no calen per fer l'entrega de la
+      quinzena):
+      <ul>
+        <li>Rols d'usuari (administradors, usuaris genèrics)</li>
+        <li>Afegir el camp correu en el model d'usuari</li>
+        <li>
+          Validació del correu quan es registra un usuari (missatge al mail)
+        </li>
+      </ul>
+    </li>
+    <li>Vistes o frontend per a usar l'API</li>
+    <li>
+      Gestionar d'usuaris en vistes
+      <ul>
+        <li>
+          L'usuari que ha fet login pot disposar d'alguna opció per donar-se de
+          baixa
+        </li>
+        <li>
+          Gestió del Perfil de l'usuari (afegir més informació: nom, cognoms,
+          adreça)
+        </li>
+      </ul>
+    </li>
+    <li>
+      Rate Limiting: Control de número de peticions per usuari (i per exemple
+      limitar l'ús de l'API a 2 peticions cada 5 minuts)
+    </li>
+  </ul>
+</div>
+{%endblock%}

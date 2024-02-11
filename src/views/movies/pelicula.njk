@@ -1,0 +1,57 @@
+{% extends "../base.njk" %} {% block titol %}Pel·lícules | Info Pel·licula{%
+endblock %} {% block contingut %}
+
+<h1 style="height: 120px" class="text-md-center">
+  Informació de la Pel·licula
+</h1>
+
+<div class="list-group">
+  <li class="d-flex justify-content-between align-items-center">
+    <a class="list-group-item"> Titol de la Pel·licula: {{ movie.title }} </a>
+    <a class="list-group-item"> Director: {{ movie.director }} </a>
+    <a class="list-group-item"> Any: {{ movie.year }} </a>
+    <a class="list-group-item"> Duració: {{ movie.duration }} </a>
+    <a class="list-group-item"> Generes: {{ movie.genre }} </a>
+    <button class="btn btn-danger" onclick="restarPuntuacion()">-1</button>
+    <a class="list-group-item"> Puntuació: {{ movie.rate }} </a>
+    <button class="btn btn-success" onclick="sumarPuntuacion()">+1</button>
+    <form action="/movies/delete/{{movie._id}}" method="post">
+      <button class="btn btn-danger">Esborrar</button>
+    </form>
+  </li>
+</div>
+
+<script>
+  function sumarPuntuacion() {
+    enviarPuntuacion("sumar")
+  }
+
+  function restarPuntuacion() {
+    enviarPuntuacion("restar")
+  }
+
+  function enviarPuntuacion(action) {
+    const url = `/movies/{{movie._id}}/rate`
+    const data = { action }
+
+    console.log(url)
+    console.log(data)
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Respuesta del servidor:", data)
+      })
+      .catch((error) => {
+        console.error("Error al enviar la solicitud POST:", error)
+      })
+  }
+</script>
+
+{% endblock %}
