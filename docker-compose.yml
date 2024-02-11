@@ -13,14 +13,16 @@ services:
       - practica_network
 
   backend:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: backend_container
     depends_on:
       - mongo
     ports:
       - 8080:8080
     volumes:
-      - ./src:/app
+      - ./backend:/app
     working_dir: /app
     command: ['node', 'index.js']
     networks:
@@ -29,4 +31,4 @@ services:
 networks:
   practica_network:
     driver: bridge
-# Para iniciar: docker-compose up --build -d mongo
+# Para iniciar: docker-compose up --build -d
