@@ -90,9 +90,13 @@ Ahora que tenemos definido el Dockerfile vamos a componer el servicio en Docker-
 
 #### Si todo funciona correctamente podremos acceder a nuestro proyecto en la siguiente dirección : [http://localhost:9001](http://localhost:9001)
 
-![Home](./public/img/Captura%20desde%202024-02-13%2007-23-53.png)
+![api](./public/img/Captura%20desde%202024-02-13%2009-30-07.png)
+_Dirección API_
 
-![Lista](./public/img/Captura%20desde%202024-02-13%2007-24-19.png)
+![Home](./public/img/Captura%20desde%202024-02-13%2009-30-02.png)
+_Framework Nunjuck_
+
+![Lista](./public/img/Captura%20desde%202024-02-13%2009-30-07.png)
 
 ---
 
