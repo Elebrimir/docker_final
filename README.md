@@ -114,3 +114,29 @@ Una vez dentro podremos gestionar la base de datos:
 ![Home-Express](./public/img/Captura%20desde%202024-02-13%2007-39-24.png)
 
 ![Movies-Express](./public/img/Captura%20desde%202024-02-13%2007-41-02.png)
+
+---
+
+### Servicio loadbalancer nginx
+
+- Servicio de loadbalancer de nginx
+  - Nos permitirá implementar un sistema de balanceo de carga/proxy en nuestro sistema
+  - Partirá de la imagen oficial de nginx
+  - Asociará un fichero de configuración de nginx (nginx.conf) que tendremos en la carpeta loadbalancer de nuestro repositorio con el mismo fichero de la carpeta /etc/nginx/ de la imagen. Este fichero nos permitirá implementar el balanceador de carga y su contenido será similar al adjuntado a esta tarea (realizando las modificaciones oportunas para adecuarlo a vuestras necesidades).
+  - Ejecutará como primer comando nada más arrancar: nginx -g daemon off.
+
+> Para ello crearemos una carpeta en nuestra raiz del proyecto llamada ./loadbalancer y dentro de ella colocaremos el archivo de configuración de nuestro nginx.
+
+![loadbalancer](./public/img/Captura%20desde%202024-02-13%2008-53-53.png)
+
+---
+
+Ahora configurarmos nuestro nginx con las características de nuestros servicios.
+
+![nginx.conf](./public/img/Captura%20desde%202024-02-13%2009-04-06.png)
+
+---
+
+Y por último añadimos el servicio al docker-compose para que ejecute el contenedor, hay que indicarle el puerto, el volumen donde copiaremos el archivo nginx.conf y el comando _**nginx -g daemon off**_ para que Nginx se ejecute en primer plano, no en segundo plano cuando se inicie el contenedor.
+
+![nginx-docker](./public/img/Captura%20desde%202024-02-13%2009-13-45.png)
